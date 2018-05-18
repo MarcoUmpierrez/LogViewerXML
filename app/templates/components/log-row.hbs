@@ -1,0 +1,10 @@
+<span class="date">{{model.date}}</span>
+<span class="thread">Thread: {{model.thread}}</span> 
+<span class="logger">{{model.logger}}</span>
+<span class="method">{{model.method}}</span>
+
+{{#if showMessage}}
+<div class="message">
+{{model.message}}
+</div>
+{{/if}}

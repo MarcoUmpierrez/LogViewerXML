@@ -1,3 +1,9 @@
-<h2 id="title">Welcome to Ember</h2>
+<div class="header">
+<input name="myFile" type="file">
+</div>
 
-{{outlet}}
+<div>
+    {{#each model as |item|}}
+        {{log-row model=item}}
+    {{/each}}
+</div>
