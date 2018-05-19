@@ -3,11 +3,33 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     model: [],
-
+    showDebug: true,
+    showInfo: true,
+    showWarning: true,
+    showError: true,
     parseXML(text) {        
         let parser = new DOMParser();
         return parser.parseFromString(text,"text/xml");
     },
+
+    filteredModel: computed('model.[]', 'showInfo', 'showWarning', 'showError', 'showDebug', function() {
+        return this.model.filter(row => {
+            if (!this.showInfo && row.level.toLowerCase() === 'info') {
+                return false;
+            }
+            if (!this.showWarning && row.level.toLowerCase() === 'warning') {
+                return false;
+            }
+            if (!this.showError && row.level.toLowerCase() === 'error') {
+                return false;
+            }
+            if (!this.showDebug && row.level.toLowerCase() === 'debug') {
+                return false;
+            }
+
+            return true;
+        });
+    }),
 
     convertToObject(_this, xml) {
         for (let k = 0; k < xml.childNodes[0].children.length; k++) {
@@ -62,6 +84,27 @@ export default Controller.extend({
         upload(e) {
             let files = e.target.files;
             this.loadFile(files[0]);
+        },
+        disableLevel(e) {
+            let checkbox = e.target;
+
+            switch (checkbox.value) {
+                case 'info':
+                    this.set('showInfo', checkbox.checked);
+                    break;
+                case 'warning':
+                    this.set('showWarning', checkbox.checked);
+                    break;
+                case 'error':
+                    this.set('showError', checkbox.checked);
+                    break;
+                case 'debug':
+                    this.set('showDebug', checkbox.checked);
+                    break;
+                default:
+                    console.log(`Invalid checkbox option:${checkbox.value}`);
+                    break;
+            }
         }
     }
 });

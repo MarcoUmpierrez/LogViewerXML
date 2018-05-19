@@ -2,16 +2,28 @@ body {
     font-family: 'Lato', sans-serif;
     font-size: .9em;
 }
-.debug {
-    background-color: rgb(255, 210, 128);
+
+:root {
+    --info-color: rgb(117, 135, 167);
+    --warning-color: rgb(255, 210, 128);
+    --error-color: rgb(252, 135, 135);
+    --debug-color: rgb(135, 252, 139);
 }
 
 .info {
-    background-color: rgb(117, 167, 117);
+    background-color: var(--info-color);
+}
+
+.warning {
+    background-color: var(--warning-color);
 }
 
 .error {
-    background-color: rgb(252, 135, 135);
+    background-color: var(--error-color);
+}
+
+.debug {
+    background-color: var(--debug-color);
 }
 
 .message {
@@ -54,6 +66,9 @@ body {
 
 .menu-level > label {
     display: inline-block;
+    border-radius: .25em;
+    padding: .2em .6em .3em;
+
 }
 
 .menu-search {
