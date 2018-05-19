@@ -32,13 +32,14 @@ export default Controller.extend({
     }),
 
     convertToObject(_this, xml) {
-        for (let k = 0; k < xml.childNodes[0].children.length; k++) {
-            let row = xml.childNodes[0].children[k];
+        this.set('model', []);
+        for (let i = 0; i < xml.childNodes[0].children.length; i++) {
+            let row = xml.childNodes[0].children[i];
             if (row.localName === "row") {
                 let obj = {};
                 
-                for (let i = 0; i < row.children.length; i++) {
-                    let item = row.children[i];
+                for (let j = 0; j < row.children.length; j++) {
+                    let item = row.children[j];
                     switch (item.localName) {
                         case 'level':
                             obj.level = item.innerHTML;

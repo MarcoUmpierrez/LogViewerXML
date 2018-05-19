@@ -72,8 +72,7 @@ body {
 }
 
 .menu-search {
-    width: 99%;
-    margin-left: 3px;   
+    width: 100%; 
     margin-bottom: 10px;
 }
 
