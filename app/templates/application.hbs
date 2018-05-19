@@ -2,6 +2,16 @@
     <input multiple="false" type="file" name="file" onchange={{action "upload"}} accept="log" />
 </div>
 
+<div class="menu">
+    <input class="menu-search" type="text" name="search">
+    <div class="menu-level">        
+        <label for="debug"><input type="checkbox" name="debug" value="debug" checked> Debug</label>
+        <label for="info"><input type="checkbox" name="info" value="info" checked> Info</label>
+        <label for="warning"><input type="checkbox" name="warning" value="warning" checked> Warning</label>
+        <label for="error"><input type="checkbox" name="error" value="error" checked> Error</label>
+    </div>
+</div>
+
 <div>
     {{#each model as |item|}}
         {{log-row model=item}}

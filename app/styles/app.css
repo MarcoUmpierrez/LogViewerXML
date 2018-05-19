@@ -15,7 +15,9 @@ body {
 }
 
 .message {
-    background-color: transparent;
+    background-color: #fffc;
+    margin-top: 5px;
+    padding-left: 5px;
 }
 
 .row {
@@ -47,5 +49,19 @@ body {
     padding: 10px;
     background-color: rgb(88, 88, 245);
     color: white;
+    margin-bottom: 10px;
+}
+
+.menu-level > label {
+    display: inline-block;
+}
+
+.menu-search {
+    width: 99%;
+    margin-left: 3px;   
+    margin-bottom: 10px;
+}
+
+.menu {
     margin-bottom: 10px;
 }

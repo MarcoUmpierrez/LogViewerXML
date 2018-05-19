@@ -7,9 +7,6 @@ export default Controller.extend({
     parseXML(text) {        
         let parser = new DOMParser();
         return parser.parseFromString(text,"text/xml");
-        
-        //document.getElementById("demo").innerHTML =
-        //xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
     },
 
     convertToObject(_this, xml) {
@@ -17,8 +14,7 @@ export default Controller.extend({
             let row = xml.childNodes[0].children[k];
             if (row.localName === "row") {
                 let obj = {};
-            
-                console.log(row);
+                
                 for (let i = 0; i < row.children.length; i++) {
                     let item = row.children[i];
                     switch (item.localName) {
@@ -49,8 +45,6 @@ export default Controller.extend({
                 _this.model.pushObject(obj); 
             }                
         }      
-        
-        console.log(_this.model);
     },
 
     loadFile(file) {
