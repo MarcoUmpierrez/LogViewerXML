@@ -2,10 +2,72 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-    model: [
-        {level:"ERROR", date: "22-12-2018", thread: 5, logger: "myapp.myclient.myclass", method: "sign-up", message: "this is an example of a short text"},
-        {level:"DEBUG", date: "22-12-2018", thread: 2, logger: "myapp.myclient.myclass", method: "sign-up", message: "this is an example of a larger text that can contain a lot of words without any specific meaning, just some random things to say with the purporse of filling this"},
-        {level:"INFO", date: "22-12-2018", thread: 3, logger: "myapp.myclient.myclass", method: "sign-up", message: "# Time Memory Function Location 1 0.0031 243696 {main}( ) ..\newsview.php:0 2 0.0045 246392 include( C:\wamp\www\online docter prj\database\connection.php ) ..\newsview.php:71 3 0.0045 246696 mysql_connect ( ) ..\connection.php:3"
+    model: [],
+
+    parseXML(text) {        
+        let parser = new DOMParser();
+        return parser.parseFromString(text,"text/xml");
+        
+        //document.getElementById("demo").innerHTML =
+        //xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
     },
-    ],
+
+    convertToObject(_this, xml) {
+        for (let k = 0; k < xml.childNodes[0].children.length; k++) {
+            let row = xml.childNodes[0].children[k];
+            if (row.localName === "row") {
+                let obj = {};
+            
+                console.log(row);
+                for (let i = 0; i < row.children.length; i++) {
+                    let item = row.children[i];
+                    switch (item.localName) {
+                        case 'level':
+                            obj.level = item.innerHTML;
+                            break;
+                        case 'thread':
+                            obj.thread = item.innerHTML;
+                            break;
+                        case 'date':
+                            obj.date = item.innerHTML;
+                            break;
+                        case 'path':
+                            obj.path = item.innerHTML;
+                            break;
+                        case 'method':
+                            obj.method = item.innerHTML;
+                            break;
+                        case 'message':
+                            obj.message = item.innerHTML;
+                            break;
+                        default:
+                            console.log(`error selecting item in XML: ${item.localName}`);
+                            break;
+                    }
+                };
+
+                _this.model.pushObject(obj); 
+            }                
+        }      
+        
+        console.log(_this.model);
+    },
+
+    loadFile(file) {
+        let reader = new FileReader();
+        let _this = this;
+        reader.onload = function (e) {
+            let xml = _this.parseXML('<log>' + e.target.result + '</log>');
+            _this.convertToObject(_this, xml);
+        };
+
+        reader.readAsText(file);
+    },
+    
+    actions: {
+        upload(e) {
+            let files = e.target.files;
+            this.loadFile(files[0]);
+        }
+    }
 });

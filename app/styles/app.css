@@ -37,14 +37,15 @@ body {
     padding: .2em .6em .3em;
 }
 
-.row > .logger {
+.row > .path {
     border-radius: .25em;
     background-color: #fff958;
     padding: .2em .6em .3em;
 }
 
-.row > .method {
-    border-radius: .25em;
-    background-color: #fff958;
-    padding: .2em .6em .3em;
+.header {
+    padding: 10px;
+    background-color: rgb(88, 88, 245);
+    color: white;
+    margin-bottom: 10px;
 }
