@@ -3,7 +3,7 @@
 </div>
 
 <div class="menu">
-    <input class="menu-search" type="text" name="search">
+    <input class="menu-search" type="text" name="search" onkeyup={{action "search"}}>
     <div class="menu-level">        
         <label class="debug" for="debug"><input type="checkbox" name="debug" value="debug" onclick={{action "disableLevel"}} checked> Debug</label>
         <label class="info" for="info"><input type="checkbox" name="info" value="info" onclick={{action "disableLevel"}} checked> Info</label>

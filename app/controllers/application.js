@@ -7,12 +7,13 @@ export default Controller.extend({
     showInfo: true,
     showWarning: true,
     showError: true,
+    searchText: null,
     parseXML(text) {        
         let parser = new DOMParser();
         return parser.parseFromString(text,"text/xml");
     },
 
-    filteredModel: computed('model.[]', 'showInfo', 'showWarning', 'showError', 'showDebug', function() {
+    filteredModel: computed('model.[]', 'showInfo', 'showWarning', 'showError', 'showDebug', 'searchText', function() {
         return this.model.filter(row => {
             if (!this.showInfo && row.level.toLowerCase() === 'info') {
                 return false;
@@ -25,6 +26,11 @@ export default Controller.extend({
             }
             if (!this.showDebug && row.level.toLowerCase() === 'debug') {
                 return false;
+            }
+            if (this.searchText !== null && this.searchText !== undefined && this.searchText !== '') {
+                if(!row.message.includes(this.searchText)) {
+                    return false;
+                }
             }
 
             return true;
@@ -106,6 +112,12 @@ export default Controller.extend({
                     console.log(`Invalid checkbox option:${checkbox.value}`);
                     break;
             }
+        },
+        
+        search(e) {
+            let value = e.target.value;
+            this.set('searchText', value);
         }
     }
 });
+
