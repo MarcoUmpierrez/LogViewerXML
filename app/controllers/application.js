@@ -41,12 +41,12 @@ export default Controller.extend({
         this.set('model', []);
         for (let i = 0; i < xml.childNodes[0].children.length; i++) {
             let row = xml.childNodes[0].children[i];
-            if (row.localName === "row") {
+            if (row.localName.toLowerCase() === "logentry") {
                 let obj = {};
                 
                 for (let j = 0; j < row.children.length; j++) {
                     let item = row.children[j];
-                    switch (item.localName) {
+                    switch (item.localName.toLowerCase()) {
                         case 'level':
                             obj.level = item.innerHTML;
                             break;
@@ -56,8 +56,8 @@ export default Controller.extend({
                         case 'date':
                             obj.date = item.innerHTML;
                             break;
-                        case 'path':
-                            obj.path = item.innerHTML;
+                        case 'class':
+                            obj.class = item.innerHTML;
                             break;
                         case 'method':
                             obj.method = item.innerHTML;
@@ -65,11 +65,14 @@ export default Controller.extend({
                         case 'message':
                             obj.message = item.innerHTML;
                             break;
+                        case 'exception':
+                            obj.exception = item.innerHTML;
+                            break;
                         default:
                             console.log(`error selecting item in XML: ${item.localName}`);
                             break;
                     }
-                };
+                }
 
                 _this.model.pushObject(obj); 
             }                

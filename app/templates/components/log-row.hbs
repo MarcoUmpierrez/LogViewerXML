@@ -1,10 +1,11 @@
 <span class="date">{{model.date}}</span>
 <span class="thread">Thread: {{model.thread}}</span> 
-<span class="path">{{model.path}}</span>
+<span class="path">{{model.class}}</span>
 <span class="path">{{model.method}}</span>
+<span class="message">{{model.message}}</span>
 
 {{#if showMessage}}
-    <div class="message">
-        {{model.message}}
+    <div class="exception">
+        {{model.exception}}
     </div>
 {{/if}}

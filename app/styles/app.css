@@ -27,6 +27,12 @@ body {
 }
 
 .message {
+    border-radius: .25em;
+    background-color: #74faff;
+    padding: .2em .6em .3em;
+}
+
+.exception {
     background-color: #fffc;
     margin-top: 5px;
     padding-left: 5px;
