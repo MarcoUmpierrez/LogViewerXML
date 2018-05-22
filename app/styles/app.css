@@ -4,11 +4,72 @@ body {
 }
 
 :root {
-    --info-color: rgb(117, 135, 167);
-    --warning-color: rgb(255, 210, 128);
-    --error-color: rgb(252, 135, 135);
-    --debug-color: rgb(135, 252, 139);
+    --info-color: #506E76;
+    --warning-color: #CDA04F;
+    --error-color: #ED5650;
+    --debug-color: #509576;
+    --message-color:#C0AC91;
+    --exception-color:#fffc;
+    --thread-color:#43a4c4;
+    --path-color:#EFECBA;
+    --header-color:#122948;
 }
+
+/* HEADER */
+
+.header {
+    padding: 10px;
+    background-color: var(--header-color);
+    color: white;
+    margin-bottom: 10px;
+}
+
+.menu-level > label {
+    color: white;
+    display: inline-block;
+    border-radius: .25em;
+    padding: .2em .6em .3em;
+
+}
+
+.menu-search {
+    width: 100%; 
+    margin-bottom: 10px;
+}
+
+.menu {
+    margin-bottom: 10px;
+}
+
+/* ROW */
+
+.row {
+    min-height: 30px;
+    padding: 5px;
+    line-height: 28px;
+}
+
+.row > .thread {
+    border-radius: .25em;
+    background-color: var(--thread-color);
+    padding: .2em .6em .3em;
+    color: white;
+}
+
+.row > .date {
+    border-radius: .25em;
+    background-color: white;
+    padding: .2em .6em .3em;
+}
+
+.row > .path {
+    border-radius: .25em;
+    background-color: var(--path-color);
+    padding: .2em .6em .3em;
+    color: #666666;
+}
+
+/* TAGS */
 
 .info {
     background-color: var(--info-color);
@@ -28,60 +89,13 @@ body {
 
 .message {
     border-radius: .25em;
-    background-color: #74faff;
+    background-color: var(--message-color);
     padding: .2em .6em .3em;
+    color: white;
 }
 
 .exception {
-    background-color: #fffc;
+    background-color: var(--exception-color);
     margin-top: 5px;
     padding-left: 5px;
-}
-
-.row {
-    min-height: 30px;
-    padding: 5px;
-    line-height: 28px;
-}
-
-.row > .thread {
-    border-radius: .25em;
-    background-color: #74acff;
-    padding: .2em .6em .3em;
-    color: white;
-}
-
-.row > .date {
-    border-radius: .25em;
-    background-color: white;
-    padding: .2em .6em .3em;
-}
-
-.row > .path {
-    border-radius: .25em;
-    background-color: #fff958;
-    padding: .2em .6em .3em;
-}
-
-.header {
-    padding: 10px;
-    background-color: rgb(88, 88, 245);
-    color: white;
-    margin-bottom: 10px;
-}
-
-.menu-level > label {
-    display: inline-block;
-    border-radius: .25em;
-    padding: .2em .6em .3em;
-
-}
-
-.menu-search {
-    width: 100%; 
-    margin-bottom: 10px;
-}
-
-.menu {
-    margin-bottom: 10px;
 }

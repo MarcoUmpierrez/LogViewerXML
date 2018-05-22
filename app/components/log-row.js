@@ -13,6 +13,6 @@ export default Component.extend({
         if (this.showMessage)
             this.set('model.height', 50);
         else
-        this.set('model.height', 20);
+            this.set('model.height', 20);
     }
 });
