@@ -17,6 +17,13 @@ body {
 
 /* HEADER */
 
+.menu-header {
+    width: 100vw;
+    background: var(--header-color);
+    position: fixed;
+    top: 0;
+}
+
 .header {
     padding: 10px;
     background-color: var(--header-color);
@@ -39,6 +46,10 @@ body {
 
 .menu {
     margin-bottom: 10px;
+}
+
+.content {
+    margin-top: 120px;
 }
 
 /* ROW */
