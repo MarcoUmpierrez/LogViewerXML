@@ -80,19 +80,25 @@ export default Controller.extend({
     },
 
     loadFile(file) {
-        let reader = new FileReader();
-        let _this = this;
-        reader.onload = function (e) {
-            let xml = _this.parseXML('<log>' + e.target.result + '</log>');
-            _this.convertToObject(_this, xml);
-        };
+        let reader = this.get('reader');
+        if (!reader) {
+            reader = new FileReader();
+            let _this = this;
+            reader.onload = function(e) {
+                let xml = _this.parseXML('<log>' + e.target.result + '</log>');
+                _this.convertToObject(_this, xml);
+            };
+
+            this.set('reader', reader);
+        }
 
         reader.readAsText(file);
     },
     
     actions: {
         upload(e) {
-            let files = e.target.files;
+            let files = e.target.files;          
+            this.set('filePath', files[0]);
             this.loadFile(files[0]);
         },
         disableLevel(e) {
@@ -120,6 +126,13 @@ export default Controller.extend({
         search(e) {
             let value = e.target.value;
             this.set('searchText', value);
+        },
+
+        reload() {
+            let filePath = this.get('filePath');
+            if (filePath) {
+                this.loadFile(filePath);
+            }
         }
     }
 });
